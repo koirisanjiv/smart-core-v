@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        canvas { margin-top: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px;}
+        th, td { padding: 8px; border: 1px solid #ccc; }
+        th { background: #f5f5f5; }
+    </style>
+</head>
+
+<body>
+
+<h2>Execution Summary</h2>
+
+<h3 id="stability"></h3>
+
+<canvas id="statusChart"></canvas>
+<canvas id="failureChart"></canvas>
+
+<h3>Slow Steps (>3s)</h3>
+<ul id="slowSteps"></ul>
+
+<h3>Flaky Steps (Retries ≥ 2)</h3>
+<ul id="flakySteps"></ul>
+
+<h3>Step Table</h3>
+<table id="stepTable">
+    <thead>
+        <tr>
+            <th>Step</th>
+            <th>Status</th>
+            <th>Attempt</th>
+            <th>Duration (ms)</th>
+            <th>Failure Type</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+async function loadData() {
+    try {
+        // ✅ Read from JSON file (no server)
+        const res = await fetch('analytics/latest.json');
+
+        if (!res.ok) {
+            throw new Error("Unable to load analytics file");
+        }
+
+        const steps = await res.json();
+
+        if (!steps || steps.length === 0) {
+            document.body.innerHTML += "<h3>No data available</h3>";
+            return;
+        }
+
+        let pass = 0, fail = 0, retry = 0;
+
+        let failureMap = {};
+        let retryMap = {};
+        let durationMap = {};
+
+        const table = document.querySelector("#stepTable tbody");
+        table.innerHTML = ""; // clear
+
+        let rows = "";
+
+        steps.forEach(s => {
+
+            // Status count
+            if (s.status === "PASS") pass++;
+            if (s.status === "FAIL") fail++;
+            if (s.status === "RETRY") retry++;
+
+            // Failure map
+            if (s.status === "FAIL" && s.failureType) {
+                failureMap[s.failureType] = (failureMap[s.failureType] || 0) + 1;
+            }
+
+            // Retry map
+            if (s.status === "RETRY") {
+                retryMap[s.stepName] = (retryMap[s.stepName] || 0) + 1;
+            }
+
+            // Duration map
+            if (s.duration) {
+                if (!durationMap[s.stepName]) {
+                    durationMap[s.stepName] = [];
+                }
+                durationMap[s.stepName].push(s.duration);
+            }
+
+            // Table row
+            rows += `
+                <tr>
+                    <td>${s.stepName}</td>
+                    <td>${s.status}</td>
+                    <td>${s.attempt}</td>
+                    <td>${s.duration || '-'}</td>
+                    <td>${s.failureType || '-'}</td>
+                </tr>
+            `;
+        });
+
+        table.innerHTML = rows;
+
+        // -----------------------
+        // Stability Score
+        // -----------------------
+        const total = steps.length;
+        const stability = total === 0 ? 0 : ((total - fail) / total * 100).toFixed(2);
+
+        document.getElementById("stability")
+            .innerText = "Stability Score: " + stability + "%";
+
+        // -----------------------
+        // Status Chart
+        // -----------------------
+        new Chart(document.getElementById('statusChart'), {
+            type: 'bar',
+            data: {
+                labels: ['PASS', 'FAIL', 'RETRY'],
+                datasets: [{
+                    label: 'Step Count',
+                    data: [pass, fail, retry]
+                }]
+            }
+        });
+
+        // -----------------------
+        // Failure Chart
+        // -----------------------
+        new Chart(document.getElementById('failureChart'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(failureMap),
+                datasets: [{
+                    data: Object.values(failureMap)
+                }]
+            }
+        });
+
+        // -----------------------
+        // Slow Steps
+        // -----------------------
+        const slowList = document.getElementById("slowSteps");
+
+        Object.entries(durationMap).forEach(([step, times]) => {
+            const avg = times.reduce((a,b)=>a+b,0)/times.length;
+
+            if (avg > 3000) {
+                slowList.innerHTML += `<li>${step} (${avg.toFixed(0)} ms)</li>`;
+            }
+        });
+
+        // -----------------------
+        // Flaky Steps
+        // -----------------------
+        const flakyList = document.getElementById("flakySteps");
+
+        Object.entries(retryMap).forEach(([step, count]) => {
+            if (count >= 2) {
+                flakyList.innerHTML += `<li>${step} (Retries: ${count})</li>`;
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        document.body.innerHTML += "<h3 style='color:red;'>Failed to load analytics data</h3>";
+    }
+}
+
+loadData();
+</script>
+
+</body>
+</html>
