@@ -1,4 +1,6 @@
-package com.qaverse.smart.Analytics;
+package com.qaverse.smart.core.context;
+
+import org.openqa.selenium.WebDriver;
 
 public class TestContext {
 
@@ -14,5 +16,15 @@ public class TestContext {
 
     public static void clear() {
         currentTest.remove();
+    }
+    
+    private WebDriver driver;
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
     }
 }

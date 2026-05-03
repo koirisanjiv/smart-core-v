@@ -47,8 +47,10 @@ com/qaverse/smart/Analytics/AnalyticsAggregator$1.class
 com/qaverse/smart/ActionMethod/DatePicker.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator$SelectCheckboxButton.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator$SetDataInSimpleTextInputField.class
+com/qaverse/smart/core/hooks/TestHook.class
 com/qaverse/smart/LocatorContract/PL_LocatorContractForFields$FieldLocatableForHourAndMinuteFromSelectTag.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator$SelectAddressOnMap.class
+com/qaverse/smart/core/context/TestContext.class
 com/qaverse/smart/ActionMethod/Text.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator$SelectRadioButtonStringFormat.class
 com/qaverse/smart/ActionMethod/ClickSearchSingleSelectDropdown.class
@@ -65,7 +67,6 @@ com/qaverse/smart/API/Actions.class
 com/qaverse/smart/ActionMethod/DragAndDrop.class
 com/qaverse/smart/Executor/FieldExecutor.class
 com/qaverse/smart/LocatorContract/PL_LocatorContractForFields$FieldLocatableForSelectAddressOnMap.class
-com/qaverse/smart/Analytics/TestContext.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator$SelectCheckboxMultiSelector.class
 com/qaverse/smart/LocatorContract/PL_SmartFieldLocator.class
 com/qaverse/smart/LocatorContract/PL_LocatorContractForFields$FieldLocatableForDateWhenMonthYearNotInListAndHaveDifferentLocator.class
@@ -75,4 +76,5 @@ com/qaverse/smart/Analytics/SmartAnalyticsRunner.class
 com/qaverse/smart/LocatorContract/PL_LocatorContractForFields.class
 com/qaverse/smart/ActionMethod/TextAreaInputField.class
 com/qaverse/smart/ActionMethod/CheckboxButton.class
+com/qaverse/smart/core/hooks/HookOrder.class
 com/qaverse/smart/Analytics/AnalyticsManager.class

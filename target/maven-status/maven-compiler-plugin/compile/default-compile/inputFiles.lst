@@ -28,7 +28,6 @@
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Analytics/AnalyticsWriter.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Analytics/SmartAnalyticsRunner.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Analytics/StepResult.java
-/home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Analytics/TestContext.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Exception/ExceptionManager.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Executor/FieldExecutor.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Failure/FailureClassifier.java
@@ -50,6 +49,9 @@
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Server/DashboardServer.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/ThreadLocal/ThreadLocalProperties.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/Wait/WaitManager.java
+/home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/core/context/TestContext.java
+/home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/core/hooks/HookOrder.java
+/home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/core/hooks/TestHook.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/report/AllureSafe.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/report/ExtentManager.java
 /home/uffizio/eclipse-workspace/smart-core/src/main/java/com/qaverse/smart/report/ReportingManager.java
