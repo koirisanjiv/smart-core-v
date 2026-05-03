@@ -33,4 +33,14 @@ public class TestContext {
     public boolean contains(String key) {
         return data.containsKey(key);
     }
+    
+    private String testName;
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
 }
