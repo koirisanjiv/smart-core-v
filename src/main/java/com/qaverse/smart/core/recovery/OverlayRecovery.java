@@ -21,7 +21,7 @@ public final class OverlayRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "Overlay disappeared"
+                    RecoveryMessages.OVERLAY_DISAPPEARED
             );
 
         } catch (Exception ex) {

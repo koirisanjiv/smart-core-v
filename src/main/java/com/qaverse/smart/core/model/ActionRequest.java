@@ -102,6 +102,10 @@ public final class ActionRequest {
                 String key,
                 Object value) {
 
+        	if (key == null) {
+        	    return this;
+        	}
+        	
             this.metadata.put(
                     key,
                     value
@@ -111,6 +115,18 @@ public final class ActionRequest {
         }
 
         public ActionRequest build() {
+
+            if (actionType == null) {
+                throw new IllegalStateException(
+                		ActionMessages.ACTION_TYPE_NULL
+                );
+            }
+
+            if (driver == null) {
+                throw new IllegalStateException(
+                		ActionMessages.WEB_DRIVER_NULL
+                );
+            }
 
             return new ActionRequest(this);
         }

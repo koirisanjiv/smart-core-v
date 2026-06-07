@@ -40,14 +40,18 @@ public final class ValidationFailedEvent
 
         	 if (validatorType == null) {
      	        throw new IllegalStateException(
-     	                "validatorType cannot be null"
+     	               EventMessages.VALIDATOR_TYPE_NULL
      	        );
      	    }
+        	 
+        	
         	 
             eventType(
                     EventType.VALIDATION_FAILED
             );
 
+            validate();
+            
             return new ValidationFailedEvent(this);
         }
     }

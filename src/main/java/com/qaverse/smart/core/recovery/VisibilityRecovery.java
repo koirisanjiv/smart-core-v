@@ -16,7 +16,7 @@ public final class VisibilityRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "Element visibility recovered"
+                    RecoveryMessages.ELEMENT_VISIBILITY_RECOVERED
             );
 
         } catch (Exception ex) {

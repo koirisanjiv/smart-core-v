@@ -1,10 +1,13 @@
 package com.qaverse.smart.core.observer;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Observer;
 import com.qaverse.smart.core.model.ObservationResult;
 
-public class AjaxObserver
+public final class AjaxObserver
         implements Observer {
 
     @Override
@@ -16,8 +19,38 @@ public class AjaxObserver
     public ObservationResult observe(
             ExecutionContext context) {
 
-        return ObservationResult.success(
-                ObservationType.AJAX.name()
-        );
+        WebDriver driver =
+                context.getDriver();
+
+        try {
+
+            Object result =
+                    ((JavascriptExecutor) driver)
+                            .executeScript(
+                                    "return window.jQuery != undefined ? jQuery.active : 0;"
+                            );
+
+            long activeRequests =
+                    Long.parseLong(
+                            result.toString()
+                    );
+
+            if (activeRequests == 0) {
+
+                return ObservationResult.success(
+                        ObservationMessages.AJAX_COMPLETED
+                );
+            }
+
+            return ObservationResult.failure(
+                    "Ajax requests still running"
+            );
+
+        } catch (Exception ex) {
+
+            return ObservationResult.success(
+                    ObservationMessages.AJAX_COMPLETED
+            );
+        }
     }
 }

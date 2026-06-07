@@ -16,4 +16,7 @@ public final class ExceptionConstants {
 
     public static final String RECOVERY_FAILED =
             "Recovery failed";
+    
+    public static final String UNKNOWN_ERROR =
+            "Unknown Smart Core error";
 }

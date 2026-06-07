@@ -4,7 +4,7 @@ import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Observer;
 import com.qaverse.smart.core.model.ObservationResult;
 
-public class LoaderObserver
+public final class LoaderObserver
         implements Observer {
 
     @Override
@@ -17,7 +17,7 @@ public class LoaderObserver
             ExecutionContext context) {
 
         return ObservationResult.success(
-                ObservationType.LOADER.name()
+                ObservationMessages.LOADER_NOT_VISIBLE
         );
     }
 }

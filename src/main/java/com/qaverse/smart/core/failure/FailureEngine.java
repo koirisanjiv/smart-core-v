@@ -12,7 +12,7 @@ public final class FailureEngine {
 
         return new FailureDecision(
                 result.getDisposition(),
-                context.getMessage()
+                FailureReason.UNKNOWN
         );
     }
 }

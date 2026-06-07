@@ -14,7 +14,7 @@ public class NoOpRecovery
 
         return new RecoveryDecision(
                 RecoveryDecisionType.NOT_RECOVERED,
-                "No recovery possible"
+                RecoveryMessages.NO_RECOVERY_POSSIBLE
         );
     }
 }

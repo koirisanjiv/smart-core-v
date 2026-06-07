@@ -41,6 +41,24 @@ public final class FailureAnalyzer {
                         FailureCategory.APPLICATION,
                         FailureDisposition.FAIL_FAST
                 );
+                
+                
+            case ELEMENT_NOT_FOUND:
+
+                return new FailureClassificationResult(
+                        failureType,
+                        FailureCategory.APPLICATION,
+                        FailureDisposition.FAIL_FAST
+                );
+                
+            case ELEMENT_NOT_INTERACTABLE:
+            case TIMEOUT:
+
+                return new FailureClassificationResult(
+                        failureType,
+                        FailureCategory.SYNCHRONIZATION,
+                        FailureDisposition.RETRY
+                );
 
             default:
 

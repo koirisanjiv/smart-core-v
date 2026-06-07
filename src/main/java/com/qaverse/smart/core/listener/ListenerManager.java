@@ -1,6 +1,7 @@
 package com.qaverse.smart.core.listener;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,8 @@ public final class ListenerManager {
             return;
         }
 
+        unregister(name);
+
         REGISTRATIONS.add(
                 new ListenerRegistration(
                         name,
@@ -37,8 +40,10 @@ public final class ListenerManager {
 
         REGISTRATIONS.removeIf(
                 registration ->
-                        registration.getName()
-                                .equals(name)
+                Objects.equals(
+                        registration.getName(),
+                        name
+                )
         );
     }
 

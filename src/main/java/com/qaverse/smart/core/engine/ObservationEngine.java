@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Observer;
+import com.qaverse.smart.core.exception.ObserverException;
 import com.qaverse.smart.core.model.ObservationResult;
 import com.qaverse.smart.core.registry.ObserverRegistry;
 
@@ -22,9 +23,9 @@ public class ObservationEngine {
 
             if (!result.isSuccess()) {
 
-                throw new RuntimeException(
-                        result.getMessage()
-                );
+            	throw new ObserverException(
+            	        result.getMessage()
+            	);
             }
         }
     }

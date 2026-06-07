@@ -21,7 +21,7 @@ public final class InterceptedRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "Click interception recovered"
+                    RecoveryMessages.CLICK_INTERCEPTION_RECOVERED
             );
 
         } catch (Exception ex) {

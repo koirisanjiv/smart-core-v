@@ -1,8 +1,11 @@
 package com.qaverse.smart.core.registry;
 
 import com.qaverse.smart.core.action.ActionType;
+import com.qaverse.smart.core.action.CheckboxAction;
 import com.qaverse.smart.core.action.ClickAction;
+import com.qaverse.smart.core.action.DropdownAction;
 import com.qaverse.smart.core.action.InputAction;
+import com.qaverse.smart.core.action.RadioAction;
 import com.qaverse.smart.core.observer.AjaxObserver;
 import com.qaverse.smart.core.observer.AlertObserver;
 import com.qaverse.smart.core.observer.DomObserver;
@@ -18,6 +21,13 @@ import com.qaverse.smart.core.recovery.StaleRecovery;
 import com.qaverse.smart.core.recovery.TimeoutRecovery;
 import com.qaverse.smart.core.recovery.VisibilityRecovery;
 import com.qaverse.smart.core.recovery.WaitForDomRecovery;
+import com.qaverse.smart.core.validation.CheckboxValidator;
+import com.qaverse.smart.core.validation.ClickValidator;
+import com.qaverse.smart.core.validation.DropdownValidator;
+import com.qaverse.smart.core.validation.InputValidator;
+import com.qaverse.smart.core.validation.RadioValidator;
+import com.qaverse.smart.core.validation.TitleValidator;
+import com.qaverse.smart.core.validation.VisibilityValidator;
 
 public final class RegistryInitializer {
 
@@ -39,6 +49,8 @@ public final class RegistryInitializer {
             registerObservers();
 
             registerRecoveries();
+            
+            registerValidators();
 
             validate();
 
@@ -49,7 +61,7 @@ public final class RegistryInitializer {
             initialized = false;
 
             throw new RegistryException(
-                    "Failed to initialize Smart Core registries",
+                    RegistryMessages.INITIALIZATION_FAILED,
                     ex
             );
         }
@@ -66,6 +78,18 @@ public final class RegistryInitializer {
 
         registry.register(
                 new InputAction()
+        );
+        
+        registry.register(
+                new CheckboxAction()
+        );
+
+        registry.register(
+                new RadioAction()
+        );
+
+        registry.register(
+                new DropdownAction()
         );
     }
 
@@ -151,16 +175,54 @@ public final class RegistryInitializer {
         if (ObserverRegistry.getAll().isEmpty()) {
 
             throw new RegistryException(
-                    "No observers registered"
+            		RegistryMessages.NO_OBSERVERS_REGISTERED
             );
         }
 
         if (RecoveryRegistry.getAll().isEmpty()) {
 
             throw new RegistryException(
-                    "No recovery strategies registered"
+            		RegistryMessages.NO_RECOVERY_STRATEGIES_REGISTERED
             );
         }
+        
+        if (ValidatorRegistry.getAll().isEmpty()) {
+
+            throw new RegistryException(
+                    RegistryMessages.NO_VALIDATORS_REGISTERED
+            );
+        }
+    }
+    
+    private static void registerValidators() {
+
+        ValidatorRegistry.register(
+                new ClickValidator()
+        );
+
+        ValidatorRegistry.register(
+                new InputValidator()
+        );
+
+        ValidatorRegistry.register(
+                new CheckboxValidator()
+        );
+
+        ValidatorRegistry.register(
+                new RadioValidator()
+        );
+
+        ValidatorRegistry.register(
+                new DropdownValidator()
+        );
+
+//        ValidatorRegistry.register(
+//                new VisibilityValidator()
+//        );
+//
+//        ValidatorRegistry.register(
+//                new TitleValidator()
+//        );
     }
 
     public static boolean isInitialized() {

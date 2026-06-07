@@ -21,7 +21,7 @@ public final class WaitForDomRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "DOM stabilized"
+                    RecoveryMessages.DOM_STABILIZED
             );
 
         } catch (Exception ex) {

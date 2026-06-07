@@ -4,11 +4,11 @@ public final class RetryDecision {
 
     private final RetryDecisionType decisionType;
 
-    private final String reason;
+    private final RetryReason reason;
 
     public RetryDecision(
             RetryDecisionType decisionType,
-            String reason) {
+            RetryReason reason) {
 
         this.decisionType = decisionType;
         this.reason = reason;
@@ -18,7 +18,7 @@ public final class RetryDecision {
         return decisionType;
     }
 
-    public String getReason() {
+    public RetryReason getReason() {
         return reason;
     }
 }

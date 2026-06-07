@@ -11,6 +11,19 @@ public final class RetryContext {
     public RetryContext(
             FailureContext failureContext,
             int currentAttempt) {
+    	
+    	
+    	if (failureContext == null) {
+    	    throw new IllegalArgumentException(
+    	            "FailureContext cannot be null"
+    	    );
+    	}
+
+    	if (currentAttempt < 0) {
+    	    throw new IllegalArgumentException(
+    	            "CurrentAttempt cannot be negative"
+    	    );
+    	}
 
         this.failureContext = failureContext;
         this.currentAttempt = currentAttempt;

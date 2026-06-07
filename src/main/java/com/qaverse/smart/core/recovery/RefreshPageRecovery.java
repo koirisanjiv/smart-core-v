@@ -24,7 +24,7 @@ public class RefreshPageRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "Page refreshed"
+                    RecoveryMessages.PAGE_REFRESHED
             );
 
         } catch (Exception ex) {

@@ -41,7 +41,7 @@ public final class ActionFailedEvent
 
             if (failureContext == null) {
                 throw new IllegalStateException(
-                        "FailureContext cannot be null"
+                       EventMessages.FAILURE_CONTEXT_NULL
                 );
             }
 

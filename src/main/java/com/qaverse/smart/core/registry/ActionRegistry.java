@@ -17,7 +17,7 @@ public final class ActionRegistry {
 
     private ActionRegistry() {
 
-        RegistryInitializer.initialize();
+       
     }
 
     public static ActionRegistry getInstance() {
@@ -56,7 +56,10 @@ public final class ActionRegistry {
     }
 
     public Collection<Action> getAll() {
-        return actions.values();
+
+        return java.util.List.copyOf(
+                actions.values()
+        );
     }
 
     public void clear() {

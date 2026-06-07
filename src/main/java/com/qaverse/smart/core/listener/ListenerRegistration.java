@@ -17,13 +17,13 @@ public final class ListenerRegistration {
         this.name =
                 Objects.requireNonNull(
                         name,
-                        "Listener name cannot be null"
+                        ListenerMessages.LISTENER_NAME_NULL
                 );
 
         this.listener =
                 Objects.requireNonNull(
                         listener,
-                        "Listener cannot be null"
+                        ListenerMessages.LISTENER_NULL
                 );
     }
 

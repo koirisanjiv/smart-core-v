@@ -1,5 +1,7 @@
 package com.qaverse.smart.core.diagnostic;
 
+import java.util.Objects;
+
 import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.failure.FailureContext;
 
@@ -12,6 +14,16 @@ public final class DiagnosticContext {
     public DiagnosticContext(
             FailureContext failureContext,
             ExecutionContext executionContext) {
+    	
+    	Objects.requireNonNull(
+    	        failureContext,
+    	        "FailureContext cannot be null"
+    	);
+
+    	Objects.requireNonNull(
+    	        executionContext,
+    	        "ExecutionContext cannot be null"
+    	);
 
         this.failureContext = failureContext;
         this.executionContext = executionContext;

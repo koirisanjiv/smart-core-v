@@ -1,11 +1,16 @@
 package com.qaverse.smart.core.model;
 
+import java.util.Objects;
+
+import com.qaverse.smart.core.validation.ValidationMessages;
 import com.qaverse.smart.core.validation.ValidatorType;
 
 public final class ValidationResult {
 
     private final boolean valid;
+
     private final ValidatorType validatorType;
+
     private final String message;
 
     public ValidationResult(
@@ -14,7 +19,13 @@ public final class ValidationResult {
             String message) {
 
         this.valid = valid;
-        this.validatorType = validatorType;
+
+        this.validatorType =
+                Objects.requireNonNull(
+                        validatorType,
+                        ValidationMessages.VALIDATOR_TYPE_NULL
+                );
+
         this.message = message;
     }
 
@@ -56,13 +67,13 @@ public final class ValidationResult {
             new ValidationResult(
                     true,
                     ValidatorType.NONE,
-                    "Validation successful"
+                    ValidationMessages.VALIDATION_SUCCESS
             );
 
     public static final ValidationResult INVALID =
             new ValidationResult(
                     false,
                     ValidatorType.NONE,
-                    "Validation failed"
+                    ValidationMessages.VALIDATION_FAILED
             );
 }

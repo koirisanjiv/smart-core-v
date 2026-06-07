@@ -4,7 +4,7 @@ import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Observer;
 import com.qaverse.smart.core.model.ObservationResult;
 
-public class ElementObserver
+public final class ElementObserver
         implements Observer {
 
     @Override
@@ -17,7 +17,7 @@ public class ElementObserver
             ExecutionContext context) {
 
         return ObservationResult.success(
-                ObservationType.ELEMENT.name()
+                ObservationMessages.ELEMENT_READY
         );
     }
 }

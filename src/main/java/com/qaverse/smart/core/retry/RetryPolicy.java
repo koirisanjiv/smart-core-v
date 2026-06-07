@@ -10,14 +10,18 @@ public final class RetryPolicy {
 
     private final boolean recoveryAllowed;
 
+    private final RetryStrategyType strategyType;
+
     public RetryPolicy(
             FailureType failureType,
             int maxAttempts,
-            boolean recoveryAllowed) {
+            boolean recoveryAllowed,
+            RetryStrategyType strategyType) {
 
         this.failureType = failureType;
         this.maxAttempts = maxAttempts;
         this.recoveryAllowed = recoveryAllowed;
+        this.strategyType = strategyType;
     }
 
     public FailureType getFailureType() {
@@ -30,5 +34,9 @@ public final class RetryPolicy {
 
     public boolean isRecoveryAllowed() {
         return recoveryAllowed;
+    }
+
+    public RetryStrategyType getStrategyType() {
+        return strategyType;
     }
 }

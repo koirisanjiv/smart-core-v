@@ -1,15 +1,15 @@
 package com.qaverse.smart.core.registry;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.qaverse.smart.core.recovery.BaseRecoveryStrategy;
 
 public final class RecoveryRegistry {
 
-    private static final List<BaseRecoveryStrategy> STRATEGIES =
-            new ArrayList<>();
+    private static final List<BaseRecoveryStrategy>
+            STRATEGIES =
+            new CopyOnWriteArrayList<>();
 
     private RecoveryRegistry() {
     }
@@ -18,9 +18,7 @@ public final class RecoveryRegistry {
             BaseRecoveryStrategy strategy) {
 
         if (strategy == null) {
-            throw new RegistryException(
-                    "Recovery strategy cannot be null"
-            );
+            return;
         }
 
         STRATEGIES.add(strategy);
@@ -28,12 +26,13 @@ public final class RecoveryRegistry {
 
     public static List<BaseRecoveryStrategy> getAll() {
 
-        return Collections.unmodifiableList(
+        return List.copyOf(
                 STRATEGIES
         );
     }
 
     public static void clear() {
+
         STRATEGIES.clear();
     }
 }

@@ -22,8 +22,10 @@ public final class FailureFactory {
                 throwable,
                 type,
                 result.getCategory(),
-                FailureSeverity.MEDIUM,
-                throwable.getMessage()
+                FailureConstants.DEFAULT_SEVERITY,
+                throwable.getMessage() == null
+                        ? type.name()
+                        : throwable.getMessage()
         );
     }
 }

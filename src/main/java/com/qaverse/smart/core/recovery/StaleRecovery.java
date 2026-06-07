@@ -14,7 +14,7 @@ public class StaleRecovery
 
         return new RecoveryDecision(
                 RecoveryDecisionType.RECOVERED,
-                "Stale element recovered"
+                RecoveryMessages.STALE_ELEMENT_RECOVERED
         );
     }
 }

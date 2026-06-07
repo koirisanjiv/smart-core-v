@@ -1,5 +1,8 @@
 package com.qaverse.smart.core.retry;
 
+import com.qaverse.smart.core.failure.FailureAnalyzer;
+import com.qaverse.smart.core.failure.FailureDisposition;
+
 public final class RetryEvaluator {
 
     public RetryDecision evaluate(
@@ -11,26 +14,43 @@ public final class RetryEvaluator {
                                .getFailureType()
                 );
 
-        if (context.getCurrentAttempt() >=
-                policy.getMaxAttempts()) {
+        FailureDisposition disposition =
+                FailureAnalyzer.analyze(
+                        context.getFailureContext()
+                               .getFailureType()
+                ).getDisposition();
+
+        if (disposition
+                == FailureDisposition.FAIL_FAST) {
 
             return new RetryDecision(
                     RetryDecisionType.FAIL_FAST,
-                    "Max retry attempts reached"
+                    RetryReason.MAX_ATTEMPTS_REACHED
             );
         }
 
-        if (policy.isRecoveryAllowed()) {
+        if (context.getCurrentAttempt()
+                >= policy.getMaxAttempts()) {
+
+            return new RetryDecision(
+                    RetryDecisionType.FAIL_FAST,
+                    RetryReason.MAX_ATTEMPTS_REACHED
+            );
+        }
+
+        if (disposition
+                == FailureDisposition.RECOVER
+                && policy.isRecoveryAllowed()) {
 
             return new RetryDecision(
                     RetryDecisionType.RECOVER_THEN_RETRY,
-                    "Recovery allowed"
+                    RetryReason.RECOVERY_ALLOWED
             );
         }
 
         return new RetryDecision(
                 RetryDecisionType.RETRY,
-                "Retry allowed"
+                RetryReason.RETRY_ALLOWED
         );
     }
 }

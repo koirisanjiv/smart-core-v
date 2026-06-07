@@ -4,7 +4,7 @@ import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Observer;
 import com.qaverse.smart.core.model.ObservationResult;
 
-public class OverlayObserver
+public final class OverlayObserver
         implements Observer {
 
     @Override
@@ -17,7 +17,7 @@ public class OverlayObserver
             ExecutionContext context) {
 
         return ObservationResult.success(
-                ObservationType.OVERLAY.name()
+                ObservationMessages.OVERLAY_NOT_PRESENT
         );
     }
 }

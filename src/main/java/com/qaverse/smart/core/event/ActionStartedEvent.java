@@ -19,15 +19,13 @@ public final class ActionStartedEvent
     	@Override
     	public ActionStartedEvent build() {
 
-    	    validate();
-
     	    eventType(
     	            EventType.EXECUTION_STARTED
     	    );
 
-    	    return new ActionStartedEvent(
-    	            this
-    	    );
+    	    validate();
+
+    	    return new ActionStartedEvent(this);
     	}
     }
 }

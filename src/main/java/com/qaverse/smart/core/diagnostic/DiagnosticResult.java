@@ -1,48 +1,52 @@
 package com.qaverse.smart.core.diagnostic;
 
+import java.util.Objects;
+
 public final class DiagnosticResult {
 
-    private final boolean success;
+	private final boolean matched;
 
-    private final DiagnosticCode code;
+	private final DiagnosticCode code;
 
-    private final DiagnosticCategory category;
+	private final DiagnosticCategory category;
 
-    private final DiagnosticSeverity severity;
+	private final DiagnosticSeverity severity;
 
-    private final String message;
+	private final String message;
 
-    public DiagnosticResult(
-            boolean success,
-            DiagnosticCode code,
-            DiagnosticCategory category,
-            DiagnosticSeverity severity,
-            String message) {
+	public DiagnosticResult(boolean matched, DiagnosticCode code, DiagnosticCategory category,
+			DiagnosticSeverity severity, String message) {
 
-        this.success = success;
-        this.code = code;
-        this.category = category;
-        this.severity = severity;
-        this.message = message;
-    }
+		Objects.requireNonNull(code, DiagnosticMessages.DIAGNOSTIC_CODE_NULL);
 
-    public boolean isSuccess() {
-        return success;
-    }
+		Objects.requireNonNull(category, DiagnosticMessages.DIAGNOSTIC_CATEGORY_NULL);
 
-    public DiagnosticCode getCode() {
-        return code;
-    }
+		Objects.requireNonNull(severity, DiagnosticMessages.DIAGNOSTIC_SEVERITY_NULL);
 
-    public DiagnosticCategory getCategory() {
-        return category;
-    }
+		this.matched = matched;
+		this.code = code;
+		this.category = category;
+		this.severity = severity;
+		this.message = message;
+	}
 
-    public DiagnosticSeverity getSeverity() {
-        return severity;
-    }
+	public boolean isMatched(){
+		return matched;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public DiagnosticCode getCode() {
+		return code;
+	}
+
+	public DiagnosticCategory getCategory() {
+		return category;
+	}
+
+	public DiagnosticSeverity getSeverity() {
+		return severity;
+	}
+
+	public String getMessage() {
+		return message;
+	}
 }

@@ -2,18 +2,17 @@ package com.qaverse.smart.core.model;
 
 public final class ObservationResult {
 
-    public static final ObservationResult SUCCESS =
-            new ObservationResult(
-                    true,
-                    "Observation successful"
-            );
+	public static final ObservationResult SUCCESS =
+	        new ObservationResult(
+	                true,
+	                ObservationMessages.OBSERVATION_SUCCESS
+	        );
 
-    public static final ObservationResult FAILURE =
-            new ObservationResult(
-                    false,
-                    "Observation failed"
-            );
-
+	public static final ObservationResult FAILURE =
+	        new ObservationResult(
+	                false,
+	                ObservationMessages.OBSERVATION_FAILED
+	        );
     private final boolean success;
 
     private final String message;

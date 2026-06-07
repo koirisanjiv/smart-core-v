@@ -1,37 +1,39 @@
 package com.qaverse.smart.core.registry;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.qaverse.smart.core.contract.Validator;
 
 public final class ValidatorRegistry {
 
-    private static final List<Validator> VALIDATORS =
-            new ArrayList<>();
+	private static final List<Validator> VALIDATORS = new CopyOnWriteArrayList<>();
 
-    private ValidatorRegistry() {
-    }
+	private ValidatorRegistry() {
+	}
 
-    public static void register(
-            Validator validator) {
+	public static void register(Validator validator) {
 
-        if (validator == null) {
-            return;
-        }
+		if (validator == null) {
+			return;
+		}
 
-        VALIDATORS.add(validator);
-    }
+		boolean alreadyRegistered = VALIDATORS.stream()
+				.anyMatch(existing -> existing.getClass().equals(validator.getClass()));
 
-    public static List<Validator> getAll() {
+		if (!alreadyRegistered) {
 
-        return Collections.unmodifiableList(
-                VALIDATORS
-        );
-    }
+			VALIDATORS.add(validator);
+		}
+	}
 
-    public static void clear() {
-        VALIDATORS.clear();
-    }
+	public static List<Validator> getAll() {
+
+		return List.copyOf(VALIDATORS);
+	}
+
+	public static void clear() {
+
+		VALIDATORS.clear();
+	}
 }

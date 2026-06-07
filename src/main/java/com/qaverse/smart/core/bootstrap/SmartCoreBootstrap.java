@@ -17,6 +17,13 @@ public final class SmartCoreBootstrap {
 
         RegistryInitializer.initialize();
 
+        if (!RegistryInitializer.isInitialized()) {
+
+            throw new IllegalStateException(
+                    "Registry initialization failed"
+            );
+        }
+
         initialized = true;
     }
 

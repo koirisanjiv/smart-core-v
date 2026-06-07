@@ -1,14 +1,13 @@
 package com.qaverse.smart.core.failure;
-
 public final class FailureDecision {
 
     private final FailureDisposition disposition;
 
-    private final String reason;
+    private final FailureReason reason;
 
     public FailureDecision(
             FailureDisposition disposition,
-            String reason) {
+            FailureReason reason) {
 
         this.disposition = disposition;
         this.reason = reason;
@@ -18,7 +17,7 @@ public final class FailureDecision {
         return disposition;
     }
 
-    public String getReason() {
+    public FailureReason getReason() {
         return reason;
     }
 }

@@ -6,28 +6,32 @@ import com.qaverse.smart.core.registry.RecoveryRegistry;
 
 public final class RecoveryEngine {
 
-    public RecoveryDecision recover(
-            RecoveryContext context) {
+	public RecoveryDecision recover(
+	        RecoveryContext context) {
 
-        List<BaseRecoveryStrategy> strategies =
-                RecoveryRegistry.getAll();
+	    RecoveryType requiredRecovery =
+	            RecoveryMapping.get(
+	                    context.getFailureContext()
+	                           .getFailureType()
+	            );
 
-        for (BaseRecoveryStrategy strategy :
-                strategies) {
+	    for (BaseRecoveryStrategy strategy :
+	            RecoveryRegistry.getAll()) {
 
-            RecoveryDecision decision =
-                    strategy.recover(context);
+	        if (strategy.getType()
+	                != requiredRecovery) {
 
-            if (decision.getDecisionType()
-                    == RecoveryDecisionType.RECOVERED) {
+	            continue;
+	        }
 
-                return decision;
-            }
-        }
+	        return strategy.recover(
+	                context
+	        );
+	    }
 
-        return new RecoveryDecision(
-                RecoveryDecisionType.NOT_RECOVERED,
-                "Recovery failed"
-        );
-    }
+	    return new RecoveryDecision(
+	            RecoveryDecisionType.NOT_RECOVERED,
+	            RecoveryMessages.NO_RECOVERY_STRATEGY_FOUND
+	    );
+	}
 }

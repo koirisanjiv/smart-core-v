@@ -1,5 +1,7 @@
 package com.qaverse.smart.core.failure;
 
+import java.util.Objects;
+
 public final class FailureContext {
 
     private final Throwable throwable;
@@ -18,6 +20,22 @@ public final class FailureContext {
             FailureCategory category,
             FailureSeverity severity,
             String message) {
+    	
+    	
+    	Objects.requireNonNull(
+    	        failureType,
+    	        FailureMessages.FAILURE_TYPE_NULL
+    	);
+
+    	Objects.requireNonNull(
+    	        category,
+    	        FailureMessages.FAILURE_CATEGORY_NULL
+    	);
+
+    	Objects.requireNonNull(
+    	        severity,
+    	        FailureMessages.FAILURE_SEVERITY_NULL
+    	);
 
         this.throwable = throwable;
         this.failureType = failureType;
@@ -44,5 +62,14 @@ public final class FailureContext {
 
     public String getMessage() {
         return message;
+    }
+    
+    public boolean isRecoverable() {
+
+        return category ==
+                FailureCategory.ENVIRONMENT
+                ||
+                category ==
+                FailureCategory.SYNCHRONIZATION;
     }
 }

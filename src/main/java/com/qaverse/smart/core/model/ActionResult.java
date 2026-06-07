@@ -95,7 +95,8 @@ public final class ActionResult {
 
         private long durationMs;
 
-        private Instant timestamp;
+        private Instant timestamp =
+                Instant.now();
 
         private Throwable throwable;
 
@@ -142,6 +143,22 @@ public final class ActionResult {
         }
 
         public ActionResult build() {
+        	
+        	 if (timestamp == null) {
+        	        timestamp = Instant.now();
+        	    }
+        	 
+            if (actionType == null) {
+                throw new IllegalStateException(
+                		ActionMessages.ACTION_TYPE_NULL
+                );
+            }
+
+            if (status == null) {
+                throw new IllegalStateException(
+                		ActionMessages.EXECUTION_STATUS_NULL
+                );
+            }
 
             return new ActionResult(this);
         }

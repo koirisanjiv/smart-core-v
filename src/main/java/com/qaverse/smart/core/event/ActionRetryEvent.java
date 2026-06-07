@@ -60,22 +60,22 @@ public final class ActionRetryEvent
         public ActionRetryEvent build() {
 
             if (attempt <= 0) {
-
                 throw new IllegalStateException(
-                        "Attempt must be greater than zero"
+                        EventMessages.ATTEMPT_INVALID
                 );
             }
 
             if (failureType == null) {
-
                 throw new IllegalStateException(
-                        "FailureType cannot be null"
+                        EventMessages.FAILURE_TYPE_NULL
                 );
             }
 
             eventType(
                     EventType.EXECUTION_RETRY
             );
+
+            validate();
 
             return new ActionRetryEvent(
                     this

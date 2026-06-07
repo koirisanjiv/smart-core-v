@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.qaverse.smart.core.context.ExecutionContext;
 import com.qaverse.smart.core.contract.Validator;
+import com.qaverse.smart.core.exception.ValidationException;
 import com.qaverse.smart.core.model.ActionRequest;
 import com.qaverse.smart.core.model.ValidationResult;
 import com.qaverse.smart.core.registry.ValidatorRegistry;
 
-public class ValidationEngine {
+public final class ValidationEngine {
 
     public void validate(
             ActionRequest request,
@@ -19,6 +20,12 @@ public class ValidationEngine {
 
         for (Validator validator : validators) {
 
+            if (validator.getSupportedAction()
+                    != request.getActionType()) {
+
+                continue;
+            }
+
             ValidationResult result =
                     validator.validate(
                             request,
@@ -27,7 +34,7 @@ public class ValidationEngine {
 
             if (!result.isValid()) {
 
-                throw new RuntimeException(
+                throw new ValidationException(
                         result.getMessage()
                 );
             }

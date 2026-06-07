@@ -21,7 +21,7 @@ public final class TimeoutRecovery
 
             return new RecoveryDecision(
                     RecoveryDecisionType.RECOVERED,
-                    "Timeout recovered"
+                    RecoveryMessages.TIMEOUT_RECOVERED
             );
 
         } catch (Exception ex) {

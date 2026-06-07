@@ -40,15 +40,19 @@ public final class ActionRecoveredEvent
         	
         	  if (recoveryType == null) {
         	        throw new IllegalStateException(
-        	                "recoveryType cannot be null"
+        	                EventMessages.RECOVERY_TYPE_NULL
         	        );
         	    }
 
-            eventType(
-                    EventType.EXECUTION_RECOVERED
-            );
+        	  eventType(
+        		        EventType.EXECUTION_RECOVERED
+        		);
 
-            return new ActionRecoveredEvent(this);
+        		validate();
+
+        		return new ActionRecoveredEvent(
+        		        this
+        		);
         }
     }
 }

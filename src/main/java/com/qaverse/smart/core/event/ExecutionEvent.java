@@ -89,7 +89,13 @@ public abstract class ExecutionEvent {
 
             if (eventType == null) {
                 throw new IllegalStateException(
-                        "EventType cannot be null"
+                        EventMessages.EVENT_TYPE_NULL
+                );
+            }
+
+            if (timestamp == null) {
+                throw new IllegalStateException(
+                        EventMessages.TIMESTAMP_NULL
                 );
             }
         }
