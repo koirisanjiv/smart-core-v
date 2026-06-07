@@ -13,22 +13,19 @@
     <description>Smart Automation Core Framework</description>
     <url>http://www.qaverse.com</url>
 
-    <licenses>
-        <license>
-            <name>Proprietary</name>
-        </license>
-    </licenses>
-
     <properties>
         <revision>2.0.1</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
     </properties>
 
-    <distributionManagement>
+      <distributionManagement>
         <repository>
-            <id>internal-repo</id>
-            <url>http://your-nexus-repo/repository/maven-releases/</url>
+            <id>smart-trace</id>
+            <name>GitHub Packages</name>
+            <url>
+                https://maven.pkg.github.com/koirisanjiv/smart-trace-v
+            </url>
         </repository>
     </distributionManagement>
 
