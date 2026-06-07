@@ -16,11 +16,6 @@ public final class ClickValidator
     public ValidationResult validate(
             ActionRequest request,
             ExecutionContext context) {
-
-    	 System.out.println(
-    	            "ClickValidator Target = "
-    	            + request.getTarget()
-    	    );
     	 
         if (!(request.getTarget() instanceof By)) {
 

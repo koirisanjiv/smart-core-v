@@ -61,27 +61,9 @@ public final class RetryEngine {
 
 			} catch (Exception ex) {
 				
-				System.out.println(
-			            "Caught = "
-			            + ex.getClass().getSimpleName()
-			    );
-
-			    
-				System.out.println(
-			            "Message = "
-			            + ex.getMessage()
-			    );
-			    
-
 				lastException = ex;
 
 				FailureContext failureContext = FailureFactory.create(ex);
-
-				
-				  System.out.println(
-				            "Classified As = "
-				            + failureContext.getFailureType()
-				    );
 				  
 				RetryDecision retryDecision = retryEvaluator.evaluate(new RetryContext(failureContext, attempt));
 

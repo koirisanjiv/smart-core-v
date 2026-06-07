@@ -19,12 +19,6 @@ public final class ValidationEngine {
                 ValidatorRegistry.getAll();
 
         for (Validator validator : validators) {
-
-        	System.out.println(
-                    "Running Validator = "
-                    + validator.getClass().getSimpleName()
-            );
-
         	
             if (validator.getSupportedAction()
                     != request.getActionType()) {

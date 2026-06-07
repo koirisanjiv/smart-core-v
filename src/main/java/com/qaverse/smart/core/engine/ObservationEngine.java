@@ -18,11 +18,6 @@ public class ObservationEngine {
 
         for (Observer observer : observers) {
 
-        	  System.out.println(
-        	            "Running Observer = "
-        	            + observer.getClass().getSimpleName()
-        	    );
-        	  
             ObservationResult result =
                     observer.observe(context);
 

@@ -23,12 +23,7 @@ public final class ClickAction
     	
         long start =
                 System.currentTimeMillis();
-        
-        System.out.println(
-                "ClickAction Target = "
-                + request.getTarget()
-        );
-
+    
         if (!(request.getTarget()
                 instanceof By)) {
 
