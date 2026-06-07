@@ -196,9 +196,9 @@ public final class RegistryInitializer {
     
     private static void registerValidators() {
 
-        ValidatorRegistry.register(
-                new ClickValidator()
-        );
+//        ValidatorRegistry.register(
+//                new ClickValidator()
+//        );
 
         ValidatorRegistry.register(
                 new InputValidator()

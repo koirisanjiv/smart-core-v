@@ -67,7 +67,10 @@ public final class RetryEngine {
 			    );
 
 			    
-			  
+				System.out.println(
+			            "Message = "
+			            + ex.getMessage()
+			    );
 			    
 
 				lastException = ex;
