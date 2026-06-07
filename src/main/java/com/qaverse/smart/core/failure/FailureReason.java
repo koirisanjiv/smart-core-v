@@ -1,0 +1,34 @@
+package com.qaverse.smart.core.failure;
+
+public enum FailureReason {
+
+    DOM_REFRESHED,
+
+    DOM_NOT_STABLE,
+
+    ELEMENT_DISABLED,
+
+    ELEMENT_HIDDEN,
+
+    ELEMENT_OUTSIDE_VIEWPORT,
+
+    OVERLAY_PRESENT,
+
+    LOADER_VISIBLE,
+
+    AJAX_IN_PROGRESS,
+
+    PAGE_NOT_READY,
+
+    ALERT_BLOCKING,
+
+    FRAME_CHANGED,
+
+    WINDOW_SWITCH_REQUIRED,
+
+    VALUE_MISMATCH,
+
+    TEXT_MISMATCH,
+
+    UNKNOWN
+}

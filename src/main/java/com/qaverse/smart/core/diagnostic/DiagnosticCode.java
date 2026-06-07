@@ -1,0 +1,32 @@
+package com.qaverse.smart.core.diagnostic;
+
+public enum DiagnosticCode {
+
+    DOM_REFRESHED,
+
+    DOM_NOT_READY,
+
+    ELEMENT_NOT_VISIBLE,
+
+    ELEMENT_NOT_CLICKABLE,
+
+    ELEMENT_STALE,
+
+    OVERLAY_DETECTED,
+
+    AJAX_ACTIVE,
+
+    LOADER_ACTIVE,
+
+    ALERT_PRESENT,
+
+    FRAME_SWITCH_REQUIRED,
+
+    WINDOW_SWITCH_REQUIRED,
+
+    PAGE_NOT_READY,
+
+    VALIDATION_FAILED,
+
+    UNKNOWN
+}

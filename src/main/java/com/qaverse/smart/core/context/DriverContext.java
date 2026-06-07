@@ -1,5 +1,5 @@
 package com.qaverse.smart.core.context;
 
-public class TestContext {
+public class DriverContext {
 
 }

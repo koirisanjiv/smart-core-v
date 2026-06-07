@@ -1,0 +1,42 @@
+package com.qaverse.smart.core.failure;
+
+public enum FailureType {
+
+    ELEMENT_NOT_FOUND,
+
+    ELEMENT_NOT_VISIBLE,
+
+    ELEMENT_NOT_CLICKABLE,
+
+    ELEMENT_NOT_INTERACTABLE,
+
+    STALE_ELEMENT,
+
+    CLICK_INTERCEPTED,
+
+    DOM_REFRESH,
+
+    LOADER_ACTIVE,
+
+    AJAX_IN_PROGRESS,
+
+    PAGE_NOT_READY,
+
+    FRAME_NOT_AVAILABLE,
+
+    WINDOW_NOT_AVAILABLE,
+
+    ALERT_NOT_PRESENT,
+
+    VALIDATION_FAILED,
+
+    ASSERTION_FAILED,
+
+    APPLICATION_ERROR,
+
+    DRIVER_ERROR,
+
+    TIMEOUT,
+
+    UNKNOWN
+}
