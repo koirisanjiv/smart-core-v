@@ -21,7 +21,7 @@
 
       <distributionManagement>
         <repository>
-            <id>smart-trace</id>
+            <id>smart-core</id>
             <name>GitHub Packages</name>
             <url>
                 https://maven.pkg.github.com/koirisanjiv/smart-trace-v
