@@ -28,5 +28,15 @@ public final class ActionMessages {
 
     public static final String DROPDOWN_SELECTED =
             "Dropdown value selected";
+    
+    public static final String CHECKBOX_SUCCESS =
+            "Checkbox value selected";
+    
+    public static final String RADIO_SUCCESS =
+            "Radio button selected";
+    
+    public static final String DROPDOWN_SUCCESS =
+            "Dropdown value selected";
+    
         
 }

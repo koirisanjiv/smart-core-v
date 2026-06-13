@@ -1,5 +1,7 @@
 package com.qaverse.smart.core.bootstrap;
 
+import com.qaverse.smart.core.engine.runtime.EngineManager;
+import com.qaverse.smart.core.engine.runtime.SeleniumEngine;
 import com.qaverse.smart.core.registry.RegistryInitializer;
 
 public final class SmartCoreBootstrap {
@@ -15,6 +17,7 @@ public final class SmartCoreBootstrap {
             return;
         }
 
+        
         RegistryInitializer.initialize();
 
         if (!RegistryInitializer.isInitialized()) {
@@ -23,6 +26,10 @@ public final class SmartCoreBootstrap {
                     "Registry initialization failed"
             );
         }
+
+        EngineManager.setEngine(
+                new SeleniumEngine()
+        );
 
         initialized = true;
     }

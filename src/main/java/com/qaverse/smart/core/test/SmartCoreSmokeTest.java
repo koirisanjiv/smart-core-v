@@ -10,7 +10,7 @@ import com.qaverse.smart.core.action.SmartActions;
 public class SmartCoreSmokeTest extends BaseTest {
 
 	
-	//@Test
+	@Test
 	public void verifyGoogleSearch() {
 
 		driver.get("https://www.google.com");
@@ -53,7 +53,7 @@ public class SmartCoreSmokeTest extends BaseTest {
 	}
 	
 	 
-    @Test
+    //@Test
     public void verifyLoginFlow() {
 
         SmartActions.input(
